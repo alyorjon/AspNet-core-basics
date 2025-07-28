@@ -1,0 +1,46 @@
+@api_HostAddress = http://localhost:5545
+@api_id=5
+GET {{api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+Get {{api_HostAddress}}
+
+
+###  get all stocks GET {{api_HostAddress}}/stocks
+GET {{api_HostAddress}}/api/stocks
+
+### get stock by id get {{api_HostAddress}}/api/stocks/{id}
+GET {{api_HostAddress}}/api/stocks/{{api_id}}
+Content-Type: application/json
+
+### insert into stock table
+POST {{api_HostAddress}}/api/stocks
+Content-Type: application/json
+
+{
+  "symbol": "AAPL",
+  "companyName": "Apple Inc.",
+  "purchase": 150.00,
+  "lastDiv": 0.82,
+  "industry": "Technology",
+  "marketCap": 2500000000000
+}
+
+### update stock by id
+PUT {{api_HostAddress}}/api/stocks/{{api_id}}
+Content-Type: application/json
+
+{
+  "symbol": "Madinam qani",
+  "companyName": "Apple Inc.",
+  "purchase": 155.00,
+  "lastDiv": 0.85,
+  "industry": "Technology",
+  "marketCap": 2550000000000
+} 
+
+### delete stock by id
+DELETE  {{api_HostAddress}}/api/stocks/{{api_id}}
+Content-Type: application/json
+
