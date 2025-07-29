@@ -1,4 +1,6 @@
 using api.ApplicationDbContext;
+using api.Interfaces;
+using api.Repository;
 using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,7 +10,7 @@ builder.Services.AddOpenApi();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
-
+builder.Services.AddScoped<IStockRepository, StockRepository>();
 builder.Services.AddDbContext<ApplicationDBContext>(options => 
     options.UseSqlite("Data Source=MyFirstWebApi.db"));
 var app = builder.Build();
@@ -21,10 +23,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.MapGet("/", () => "Hello World!")
     .WithName("GetHelloWorld");
-
-
 app.MapControllers();
 app.Run();

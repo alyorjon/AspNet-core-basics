@@ -1,5 +1,5 @@
 @api_HostAddress = http://localhost:5545
-@api_id=5
+@api_id=4
 GET {{api_HostAddress}}/weatherforecast/
 Accept: application/json
 
@@ -19,8 +19,8 @@ POST {{api_HostAddress}}/api/stocks
 Content-Type: application/json
 
 {
-  "symbol": "AAPL",
-  "companyName": "Apple Inc.",
+  "symbol": "Jahongir",
+  "companyName": "Apple Inc 23123.",
   "purchase": 150.00,
   "lastDiv": 0.82,
   "industry": "Technology",
