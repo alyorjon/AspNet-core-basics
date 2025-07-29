@@ -11,6 +11,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 builder.Services.AddScoped<IStockRepository, StockRepository>();
+builder.Services.AddScoped<ICommentRepository, CommentRepository>();
 builder.Services.AddDbContext<ApplicationDBContext>(options => 
     options.UseSqlite("Data Source=MyFirstWebApi.db"));
 var app = builder.Build();

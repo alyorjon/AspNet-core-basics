@@ -14,6 +14,6 @@ namespace api.ApplicationDbContext
 
         }
         public DbSet<Stock> Stock { get; set; }
-        public DbSet<Comment> Comments { get; set; }
+        public DbSet<Comments> Comments { get; set; }
     }
 }

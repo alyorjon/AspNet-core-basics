@@ -2,6 +2,7 @@ using System;
 using api.ApplicationDbContext;
 using api.Interfaces;
 using api.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace api.Repository;
 
@@ -12,27 +13,27 @@ public class CommentRepository:ICommentRepository
     {
         _context = context;
     }
-    public Task<List<Comment>> GetAllsAsync()
+    public async Task<List<Comments>> GetAllsAsync()
+    {
+        return await _context.Comments.ToListAsync();
+    }
+
+    public Task<Comments> GetByIdAsync(int id)
     {
         throw new NotImplementedException();
     }
 
-    public Task<Comment> GetByIdAsync(int id)
+    public Task<Comments> CreateAsync(Comments commentModel)
     {
         throw new NotImplementedException();
     }
 
-    public Task<Comment> CreateAsync(Comment commentModel)
+    public Task<Comments> UpdateAsync(int id, Comments commentModel)
     {
         throw new NotImplementedException();
     }
 
-    public Task<Comment> UpdateAsync(int id, Comment commentModel)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<Comment> DeleteByIdAsync(int id)
+    public Task<Comments> DeleteByIdAsync(int id)
     {
         throw new NotImplementedException();
     }
