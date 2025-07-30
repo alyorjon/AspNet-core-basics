@@ -16,11 +16,11 @@ public class StockRepository : IStockRepository
     }
     public async Task<List<Stock>> GetAllAsync()
     {
-        return await _context.Stock.ToListAsync();
+        return await _context.Stock.Include(c=>c.Comments).ToListAsync();
     }
     public async Task<Stock> GetStockByIdAsync(int id)
     {
-        return await _context.Stock.FindAsync(id);
+        return await _context.Stock.Include(c=>c.Comments).FirstOrDefaultAsync(i=>i.Id== id);
     }
 
     public async Task<Stock> CreateStockAsync(Stock stockModel)
@@ -41,7 +41,7 @@ public class StockRepository : IStockRepository
 
     public async Task<Stock> UpdateStockAsync(int id, UpdateStockDTO stockDto)
     {
-        var stock = await _context.Stock.FirstOrDefaultAsync(x => x.Id == id);
+        var stock = await _context.Stock.Include(c=>c.Comments).FirstOrDefaultAsync(x => x.Id == id);
         if (stock == null) return null;
 
         stock.Symbol = stockDto.Symbol;

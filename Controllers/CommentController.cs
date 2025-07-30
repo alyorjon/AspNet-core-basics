@@ -24,11 +24,10 @@ namespace api.Controllers
         {
             var comments = await _commentRepository.GetAllsAsync();
             var commentDto = comments.Select(s => s.ToCommentDto());
-
             return Ok(commentDto);
         }
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetByIdAsync(int id)
+        public async Task<IActionResult> GetByIdAsync([FromRoute] int id)
         { 
             var comment = await _commentRepository.GetByIdAsync(id);
             if (comment == null)
