@@ -2,6 +2,7 @@ using System;
 using api.ApplicationDbContext;
 using api.Interfaces;
 using api.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace api.Repository;
@@ -18,9 +19,10 @@ public class CommentRepository:ICommentRepository
         return await _context.Comments.ToListAsync();
     }
 
-    public Task<Comments> GetByIdAsync(int id)
+    public async Task<Comments> GetByIdAsync([FromRoute] int id)
     {
-        throw new NotImplementedException();
+        var comment = await _context.Comments.FindAsync(id);
+        return comment;
     }
 
     public Task<Comments> CreateAsync(Comments commentModel)

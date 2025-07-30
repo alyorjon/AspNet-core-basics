@@ -44,3 +44,7 @@ Content-Type: application/json
 DELETE  {{api_HostAddress}}/api/stocks/{{api_id}}
 Content-Type: application/json
 
+
+
+###  get all comments
+GET {{api_HostAddress}}/api/comment

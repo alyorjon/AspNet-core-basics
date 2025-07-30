@@ -27,7 +27,16 @@ namespace api.Controllers
 
             return Ok(commentDto);
         }
-
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetByIdAsync(int id)
+        { 
+            var comment = await _commentRepository.GetByIdAsync(id);
+            if (comment == null)
+            {
+                return NotFound();
+            }
+            return Ok(comment.ToCommentDto());
+        }
         // Additional methods for Create, Update, Delete can be added here
     }
 }
