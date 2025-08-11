@@ -34,7 +34,7 @@ namespace api.Services
             }
         }
 
-        public async Task<StockDto?> GetStockByIdAsync(int id)
+        public async Task<StockDto> GetStockByIdAsync(int id)
         {
             try
             {

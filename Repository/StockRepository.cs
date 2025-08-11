@@ -32,11 +32,11 @@ namespace api.Repository
                 .ToListAsync();
         }
 
-        public async Task<Stock?> GetByIdAsync(int id)
+        public async Task<Stock> GetByIdAsync(int id)
         {
-            return await _context.Stocks.FindAsync(id);
+            var res = await _context.Stocks.FirstOrDefaultAsync(x => x.Id == id);
+            return res;
         }
-
         // Complex Queries
         public async Task<Stock?> GetBySymbolAsync(string symbol)
         {
@@ -432,7 +432,7 @@ namespace api.Repository
             return stockModel;
         }
 
-        public async Task<Stock?> UpdateAsync(int id, UpdateStockDTO stockDto)
+        public async Task<Stock> UpdateAsync(int id, UpdateStockDTO stockDto)
         {
             var existingStock = await _context.Stocks.FirstOrDefaultAsync(x => x.Id == id);
             
@@ -447,7 +447,7 @@ namespace api.Repository
                 
             if (stockDto.Price.HasValue)
                 existingStock.Price = stockDto.Price.Value;
-            if (stockDto.Industry!= null)
+            if (!string.IsNullOrWhiteSpace(stockDto.Industry))
                 existingStock.Industry = stockDto.Industry;
             if (stockDto.MarketCap.HasValue)
                 existingStock.MarketCap = stockDto.MarketCap.Value; 

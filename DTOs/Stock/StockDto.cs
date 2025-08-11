@@ -11,5 +11,5 @@ public class StockDto
     public decimal Price { get; set; }
     public DateTime LastUpdated { get; set; }
     public long MarketCap { get; set; }
-    public string Industry { get; set; } = string.Empty;
+    public string? Industry { get; set; }
 }

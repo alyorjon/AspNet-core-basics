@@ -92,7 +92,7 @@ namespace api.Controllers
         /// <summary>
         /// Stockni yangilash
         /// </summary>
-        [HttpPut("{id:int}")]
+        [HttpPatch("{id:int}")]
         public async Task<IActionResult> UpdateStock([FromRoute] int id, [FromBody] UpdateStockDTO updateStockDto)
         {
             try

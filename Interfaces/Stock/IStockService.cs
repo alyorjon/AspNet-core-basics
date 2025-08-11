@@ -9,7 +9,7 @@ namespace api.Interfaces
         Task<List<StockDto>> GetAllStocksAsync();
         Task<StockDto?> GetStockByIdAsync(int id);
         Task<StockDto> CreateStockAsync(CreateStockDTO createStockDto);
-        Task<StockDto?> UpdateStockAsync(int id, UpdateStockDTO updateStockDto);
+        Task<StockDto> UpdateStockAsync(int id, UpdateStockDTO updateStockDto);
         Task<bool> DeleteStockAsync(int id);
 
         // Complex Queries

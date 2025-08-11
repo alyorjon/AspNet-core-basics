@@ -78,11 +78,12 @@ namespace api.Service
                     throw new ArgumentException("Content bo'sh bo'lishi mumkin emas", nameof(updateCommentDTO.Content));
                 if (updateCommentDTO.StockId <= 0)
                     throw new ArgumentException("StockId noldan kichik yoki  bo'sh bo'lishi mumkin emas", nameof(updateCommentDTO.StockId));
-                return exists.ToCommentDto();
+                var commentModel =await _commentRepository.UpdateAsync(id,updateCommentDTO);
+                return commentModel.ToCommentDto();
             }
             catch (Exception ex)
             {
-                throw new ArgumentException("Xatolik chiqdi");
+                throw new ArgumentException("Xatolik chiqdi: " + ex.Message);
             }
         }
         #endregion

@@ -14,7 +14,10 @@ namespace api.Mappers
                 Symbol = stockModel.Symbol,
                 CompanyName = stockModel.CompanyName,
                 Price = stockModel.Price,
-                LastUpdated = stockModel.LastUpdated
+                LastUpdated = stockModel.LastUpdated,
+                MarketCap = stockModel.MarketCap,
+                Industry = stockModel.Industry,
+                // Comment = stockModel.Comment
             };
         }
 

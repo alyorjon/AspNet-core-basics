@@ -1,5 +1,6 @@
 using api.ApplicationDbContext;
 using api.Interfaces;
+using api.Interfaces.Stock2;
 using api.Repository;
 using api.Service;
 using api.Services;
@@ -17,6 +18,9 @@ builder.Services.AddScoped<IStockRepository, StockRepository>();
 builder.Services.AddScoped<ICommentRepository, CommentRepository>();
 builder.Services.AddScoped<ICommentService, CommentService>();
 builder.Services.AddTransient<IBookRepository, BookRepository>();
+
+// builder.Services.AddScoped(IStock2Service,Stock2Service);
+
 builder.Services.AddDbContext<ApplicationDBContext>(options =>
 {
     options.UseSqlite("Data Source=MyFirstWebApi.db");

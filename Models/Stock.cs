@@ -23,7 +23,7 @@ namespace api.Models
         public long MarketCap { get; set; }
         
         [MaxLength(500)]
-        public string Industry { get; set; } = string.Empty;
+        public string? Industry { get; set; } 
         
         public DateTime LastUpdated { get; set; } = DateTime.Now;
         
