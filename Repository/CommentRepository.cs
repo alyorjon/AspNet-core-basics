@@ -14,28 +14,30 @@ public class CommentRepository:ICommentRepository
     {
         _context = context;
     }
-    public async Task<List<Comments>> GetAllsAsync()
+    public async Task<List<Comment>> GetAllsAsync()
     {
-        return await _context.Comments.ToListAsync();
+        return await _context.Comment.ToListAsync();
     }
 
-    public async Task<Comments> GetByIdAsync([FromRoute] int id)
+    public async Task<Comment> GetByIdAsync([FromRoute] int id)
     {
-        var comment = await _context.Comments.FindAsync(id);
+        var comment = await _context.Comment.FindAsync(id);
         return comment;
     }
 
-    public Task<Comments> CreateAsync(Comments commentModel)
+    public async Task<Comment> CreateAsync(Comment commentModel)
+    {
+        _context.Comment.Add(commentModel);
+        await _context.SaveChangesAsync();
+        return commentModel;
+    }
+
+    public Task<Comment> UpdateAsync(int id, Comment commentModel)
     {
         throw new NotImplementedException();
     }
 
-    public Task<Comments> UpdateAsync(int id, Comments commentModel)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<Comments> DeleteByIdAsync(int id)
+    public Task<Comment> DeleteByIdAsync(int id)
     {
         throw new NotImplementedException();
     }

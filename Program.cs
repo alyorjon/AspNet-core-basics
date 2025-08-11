@@ -1,6 +1,8 @@
 using api.ApplicationDbContext;
 using api.Interfaces;
 using api.Repository;
+using api.Service;
+using api.Services;
 using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,10 +12,19 @@ builder.Services.AddOpenApi();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
+builder.Services.AddTransient<IStockService, StockService>();
 builder.Services.AddScoped<IStockRepository, StockRepository>();
 builder.Services.AddScoped<ICommentRepository, CommentRepository>();
-builder.Services.AddDbContext<ApplicationDBContext>(options => 
-    options.UseSqlite("Data Source=MyFirstWebApi.db"));
+builder.Services.AddScoped<ICommentService, CommentService>();
+builder.Services.AddTransient<IBookRepository, BookRepository>();
+builder.Services.AddDbContext<ApplicationDBContext>(options =>
+{
+    options.UseSqlite("Data Source=MyFirstWebApi.db");
+    
+    // Warning ni suppress qilish
+    options.ConfigureWarnings(warnings =>
+        warnings.Ignore(Microsoft.EntityFrameworkCore.Diagnostics.RelationalEventId.PendingModelChangesWarning));
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -1,36 +1,32 @@
-using System;
 using api.DTOs;
 using api.DTOs.Stock;
 using api.Models;
 
-namespace api.Mappers;
-
-public static class StockMappers
+namespace api.Mappers
 {
-    public static StockDto ToStockDto(this Stock stockModel)
+    public static class StockMappers
     {
-        return new StockDto
+        public static StockDto ToStockDto(this Stock stockModel)
         {
-            Id = stockModel.Id,
-            Symbol = stockModel.Symbol,
-            CompanyName = stockModel.CompanyName,
-            Purchase = stockModel.Purchase,
-            LastDiv = stockModel.LastDiv,
-            Industry = stockModel.Industry,
-            MarketCap = stockModel.MarketCap,
-            Comments = stockModel.Comments.Select(c => c.ToCommentDto()).ToList()
-        };
-    }
-    public static Stock ToStockFromCreateDTO(this CreateStockDTO createDto)
-    {
-        return new Stock
+            return new StockDto
+            {
+                Id = stockModel.Id,
+                Symbol = stockModel.Symbol,
+                CompanyName = stockModel.CompanyName,
+                Price = stockModel.Price,
+                LastUpdated = stockModel.LastUpdated
+            };
+        }
+
+        public static Stock ToStockFromCreateDTO(this CreateStockDTO stockDto)
         {
-            Symbol = createDto.Symbol,
-            CompanyName = createDto.CompanyName,
-            Purchase = createDto.Purchase,
-            LastDiv = createDto.LastDiv,
-            Industry = createDto.Industry,
-            MarketCap = createDto.MarketCap
-        };
+            return new Stock
+            {
+                Symbol = stockDto.Symbol,
+                CompanyName = stockDto.CompanyName,
+                Price = stockDto.Price,
+                LastUpdated = DateTime.Now
+            };
+        }
     }
 }

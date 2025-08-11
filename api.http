@@ -46,5 +46,5 @@ Content-Type: application/json
 
 
 
-###  get all comments
+###  get all Comment
 GET {{api_HostAddress}}/api/comment
